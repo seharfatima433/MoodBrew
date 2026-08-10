@@ -59,7 +59,7 @@
                     <div class="w-full h-full relative preserve-3d animate-[spin_20s_linear_infinite] group-hover:[animation-play-state:paused] transition-all duration-500">
                         <!-- We use a high quality coffee image masked into a circle, giving it a 3D float/spin feel -->
                         <div class="absolute inset-0 rounded-full border-4 border-theme-primary shadow-[20px_20px_60px_rgba(0,0,0,0.2)] overflow-hidden transform translate-z-12">
-                            <img src="/images/coffee/Americano.jpg" alt="3D Coffee" class="w-full h-full object-cover scale-125">
+                            <img src="{{ asset('images/coffee/Americano.jpg') }}" alt="3D Coffee" class="w-full h-full object-cover scale-125">
                         </div>
                         
                         <!-- Floating Badges orbiting the cup -->

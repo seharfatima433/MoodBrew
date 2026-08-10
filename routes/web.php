@@ -22,7 +22,10 @@ use App\Http\Controllers\CheckoutController;
 Route::get('/', function () {
     $moods = Mood::all();
     $categories = App\Models\Category::all();
-    $products = Product::with(['category', 'mood'])->get();
+    $products = Product::with(['category', 'mood'])->get()->map(function($product) {
+        $product->image = asset(ltrim($product->image, '/'));
+        return $product;
+    });
     
     return view('home', compact('moods', 'categories', 'products'));
 });
