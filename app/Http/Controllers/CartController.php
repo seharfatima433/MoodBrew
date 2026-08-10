@@ -59,6 +59,16 @@ class CartController extends Controller
 
     public function data()
     {
-        return response()->json(Session::get('cart', []));
+        $cart = Session::get('cart', []);
+        
+        // Ensure all image paths in the cart have the full asset URL for subfolder deployments
+        foreach ($cart as $id => &$item) {
+            if (isset($item['image']) && !str_starts_with($item['image'], 'http')) {
+                $item['image'] = asset(ltrim($item['image'], '/'));
+            }
+        }
+        unset($item);
+
+        return response()->json($cart);
     }
 }
