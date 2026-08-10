@@ -252,7 +252,7 @@
                 },
 
                 async fetchCart() {
-                    let response = await fetch('/cart/data');
+                    let response = await fetch('{{ route('cart.data') }}');
                     let data = await response.json();
                     
                     this.cartItems = Object.values(data);
@@ -272,7 +272,7 @@
                 },
 
                 async addToCart(productId) {
-                    let response = await fetch('/cart/add', {
+                    let response = await fetch('{{ route('cart.add') }}', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -292,7 +292,7 @@
                         return this.removeFromCart(rowId);
                     }
                     
-                    let response = await fetch(`/cart/update/${rowId}`, {
+                    let response = await fetch('{{ url('/cart/update') }}/' + rowId, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -307,7 +307,7 @@
                 },
 
                 async removeFromCart(rowId) {
-                    let response = await fetch(`/cart/remove/${rowId}`, {
+                    let response = await fetch('{{ url('/cart/remove') }}/' + rowId, {
                         method: 'DELETE',
                         headers: {
                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -334,7 +334,7 @@
                     this.checkoutSuccess = false;
                     
                     try {
-                        let response = await fetch('/checkout', {
+                        let response = await fetch('{{ route('checkout.process') }}', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
